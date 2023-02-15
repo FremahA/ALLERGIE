@@ -17,7 +17,7 @@ services:
     
 
   db:
-    container_name: postgresql_db
+    container_name: postgresql_db1
     image: postgres
     # automatically restarts the container - Docker daemon on restart or 
     # the container itself is manually restarted
@@ -33,7 +33,7 @@ services:
       - "5432:5432"
 
   pgadmin:
-    container_name: pgadmin4
+    container_name: pgadmin_allergie
     image: dpage/pgadmin4
     restart: always
 
@@ -41,8 +41,8 @@ services:
       - pg_admin:/var/lib/pgadmin
 
     environment:
-      PGADMIN_DEFAULT_EMAIL: roots@roots.com
-      PGADMIN_DEFAULT_PASSWORD: roots
+      PGADMIN_DEFAULT_EMAIL: moot@moot.com
+      PGADMIN_DEFAULT_PASSWORD: moot
       # PGADMIN_LISTEN_PORT = 80
     ports:
       - "5050:80"
