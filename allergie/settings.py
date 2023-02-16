@@ -41,9 +41,10 @@ SITE_ID = 1
 
 THIRD_PARTY_APPS = [
     'rest_framework',
+    'django_countries',
 ]
 
-LOCAL_APPS = ['apps.users', 'apps.common',]
+LOCAL_APPS = ['apps.users', 'apps.common', 'apps.profiles',]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 

@@ -15,15 +15,18 @@ class UserAdmin(BaseUserAdmin):
         "id",
         "uuid",
         "email",
-        "restaurant_name",
+        "username",
+        "first_name",
+        "last_name",
         "is_staff",
         "is_active",
-        "is_superuser"
     ]
     list_display_links = ["uuid", "email"]
     list_filter = [
         "email",
-        "restaurant_name",
+        "username",
+        "first_name",
+        "last_name",
         "is_staff",
         "is_active",
     ]
@@ -38,10 +41,12 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
         (
-            _("Restaurant Information"),
+            _("Personal Information"),
             {
                 "fields": (
-                    "restaurant_name",
+                    "username",
+                    "first_name",
+                    "last_name",
                 )
             },
         ),
@@ -74,7 +79,7 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
     )
-    search_fields = ["email", "restaurant_name"]
+    search_fields = ["email", "username", "first_name", "last_name"]
 
 
 admin.site.register(User, UserAdmin)
