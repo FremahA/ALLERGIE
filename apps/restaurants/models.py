@@ -9,7 +9,7 @@ User = get_user_model()
 
 
 class Restaurant(TimeStampedUUIDModel):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, related_name="restaurants")
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name="restaurants")
     name = models.CharField(verbose_name=_("Restaurant Name"), null=False, max_length=200)
     address = models.CharField(verbose_name=_("Restaurant Address"), null=False, max_length=150)
 
@@ -51,7 +51,7 @@ class MenuCategory(TimeStampedUUIDModel):
 
         
 class Ingredient(TimeStampedUUIDModel):
-    name = models.Charfield(verbose_name=_("Ingredient Name"), max_length=100)
+    name = models.CharField(verbose_name=_("Ingredient Name"), max_length=100)
 
     class Meta:
         verbose_name = _("Ingredient")
@@ -64,9 +64,9 @@ class Ingredient(TimeStampedUUIDModel):
 class MenuItem(TimeStampedUUIDModel):
     name = models.CharField(verbose_name=_("Dish Name"), max_length=100)
     description = models.TextField(verbose_name=_("Description"), default="say something about your dish")
-    category = models.ManyToManyField(MenuCategory, related_name="menuitemcategory", on_delete=models.SET_NULL)
-    ingredient = models.ManyToManyField(Ingredient, null=False, related_name="menuitemingredients")
-    price = models.IntegerField()
+    category = models.ManyToManyField(MenuCategory, related_name="menuitemcategory")
+    ingredient = models.ManyToManyField(Ingredient, related_name="menuitemingredients")
+    price = models.IntegerField(verbose_name=_("Dish Price"))
 
     def save(self, *args, **kwargs):
         self.description = str.capitalize(self.description)
@@ -75,7 +75,6 @@ class MenuItem(TimeStampedUUIDModel):
     class Meta:
         verbose_name = _("Menu Item")
         verbose_name_plural = _("Menu Items")
-        ordering = ["category", "name"]
 
     def __str__(self):
         return self.name

@@ -8,7 +8,7 @@ class MenuAdmin(admin.ModelAdmin):
 
 
 class MenuItemAdmin(admin.ModelAdmin):
-    list_display = ["name",  "category", "ingredient", "price"]
+    list_display = ["name", "price"]
 
 admin.site.register(Restaurant)
 admin.site.register(Ingredient)

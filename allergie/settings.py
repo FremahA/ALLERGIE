@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
     'django_countries',
     'djoser',
     'rest_framework_simplejwt',
+    'django_filters',
 ]
 
 LOCAL_APPS = ['apps.users', 'apps.common', 'apps.profiles', 'apps.restaurants',]
