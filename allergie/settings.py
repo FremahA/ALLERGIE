@@ -47,7 +47,7 @@ THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
 ]
 
-LOCAL_APPS = ['apps.users', 'apps.common', 'apps.profiles',]
+LOCAL_APPS = ['apps.users', 'apps.common', 'apps.profiles', 'apps.restaurants',]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
