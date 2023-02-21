@@ -11,7 +11,7 @@ from rest_framework.views import APIView
 from .exceptions import RestaurantNotFound
 from .models import Restaurant, Ingredient, Menu, MenuCategory, MenuItem
 from .serializers import (RestaurantSerializer, MenuCategorySerializer, MenuItemSerializer, 
-                          IngredientSerializer, RestaurantCreateSerializer, MenuSerializer )
+                          IngredientSerializer, RestaurantCreateSerializer, MenuSerializer)
 
 logger = logging.getLogger(__name__)
 
@@ -147,8 +147,7 @@ def delete_restaurant_api_view(request, uuid):
         else:
             data["failure"] = "Deletion failed"
         return Response(data=data)
-
-
+        
 class RestaurantSearchAPIView(APIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = RestaurantCreateSerializer

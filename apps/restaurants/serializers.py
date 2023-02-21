@@ -8,7 +8,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ["user", "name", "uuid" "address"]
+        fields = ["user", "name", "uuid", "address"]
     
     
     def get_user(self, obj):
@@ -27,6 +27,9 @@ class MenuSerializer(serializers.ModelSerializer):
         model = Menu
         fields = ["restaurant", "title", "slug"]
 
+    def get_restaurant(self, obj):
+        return obj.restaurant.name
+        
 
 class MenuCategorySerializer(serializers.ModelSerializer):
     menu = MenuSerializer(read_only=True)

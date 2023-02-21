@@ -22,7 +22,7 @@ class Restaurant(TimeStampedUUIDModel):
 
 
 class Menu(TimeStampedUUIDModel):
-    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE)
+    restaurant = models.OneToOneField(Restaurant, on_delete=models.CASCADE, related_name="restaurantmenu")
     title = models.CharField(verbose_name=_("Menu Title"), max_length=250, blank=False)
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
 
