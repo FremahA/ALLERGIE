@@ -8,8 +8,6 @@ from django.utils.translation import gettext_lazy as _
 from .managers import CustomUserManager
 
 
-
-
 class User(AbstractBaseUser, PermissionsMixin):
     id = models.BigAutoField(primary_key=True, editable=False)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)

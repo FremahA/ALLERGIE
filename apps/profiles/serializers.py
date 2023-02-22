@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from rest_framework import fields, serializers
 from django_countries.serializer_fields import CountryField
+from rest_framework import fields, serializers
 
 from .models import Profile
 
@@ -14,7 +14,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(source="user.email")
     full_name = serializers.SerializerMethodField(read_only=True)
     country = CountryField(name_only=True)
-    
+
     class Meta:
         model = Profile
         fields = [

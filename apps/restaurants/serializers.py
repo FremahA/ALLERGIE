@@ -1,6 +1,7 @@
 from rest_framework import serializers
 
-from .models import Restaurant, Ingredient, Menu, MenuCategory, MenuItem
+from .models import Ingredient, Menu, MenuCategory, MenuItem, Restaurant
+
 
 class RestaurantSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField(read_only=True)
@@ -9,8 +10,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ["user", "name", "uuid", "address"]
-    
-    
+
     def get_user(self, obj):
         return obj.user.username
 
@@ -23,30 +23,37 @@ class RestaurantCreateSerializer(serializers.ModelSerializer):
 
 class MenuSerializer(serializers.ModelSerializer):
     restaurant = RestaurantSerializer(read_only=True)
+
     class Meta:
         model = Menu
         fields = ["restaurant", "title", "slug"]
 
     def get_restaurant(self, obj):
         return obj.restaurant.name
-        
+
 
 class MenuCategorySerializer(serializers.ModelSerializer):
     menu = MenuSerializer(read_only=True)
+
     class Meta:
         model = MenuCategory
-        fields = ["name", "menu",]
+        fields = [
+            "name",
+            "menu",
+        ]
 
 
 class IngredientSerializer(serializers.ModelSerializer):
     name = serializers.JSONField()
+
     class Meta:
         model = Ingredient
-        fields = ["name", "id"] 
+        fields = ["name", "id"]
 
 
 class MenuItemIngredientSerializer(serializers.ModelSerializer):
     name = serializers.JSONField()
+
     class Meta:
         model = Ingredient
         fields = ["name"]
@@ -54,6 +61,7 @@ class MenuItemIngredientSerializer(serializers.ModelSerializer):
 
 class MenuItemCategorySerializer(serializers.ModelSerializer):
     name = serializers.JSONField()
+
     class Meta:
         model = MenuCategory
         fields = ["name"]
@@ -62,9 +70,10 @@ class MenuItemCategorySerializer(serializers.ModelSerializer):
 class MenuItemSerializer(serializers.ModelSerializer):
     category = MenuItemCategorySerializer(many=True)
     ingredient = MenuItemIngredientSerializer(many=True)
+
     class Meta:
         model = MenuItem
-        exclude = ["updated_at", "id"] 
+        exclude = ["updated_at", "id"]
 
     def get_category(self, obj):
         return obj.category.category.name

@@ -1,7 +1,6 @@
 import logging
 
 import django_filters
-from django.db.models import query
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters, generics, permissions, status
 from rest_framework.decorators import api_view, permission_classes
@@ -9,17 +8,16 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .exceptions import RestaurantNotFound
-from .models import Restaurant, Ingredient, Menu, MenuCategory, MenuItem
-from .serializers import (RestaurantSerializer, MenuCategorySerializer, MenuItemSerializer, 
-                          IngredientSerializer, RestaurantCreateSerializer, MenuSerializer)
+from .models import Ingredient, Menu, MenuCategory, MenuItem, Restaurant
+from .serializers import (IngredientSerializer, MenuCategorySerializer,
+                          MenuItemSerializer, MenuSerializer,
+                          RestaurantCreateSerializer, RestaurantSerializer)
 
 logger = logging.getLogger(__name__)
 
 
 class MenuFilter(django_filters.FilterSet):
-    ingredient = django_filters.Filter(
-        field_name="ingredient", lookup_expr="in"
-    )
+    ingredient = django_filters.Filter(field_name="ingredient", lookup_expr="in")
 
     class meta:
         model = MenuItem
@@ -45,7 +43,7 @@ class ListAllMenuItemsAPIView(generics.ListAPIView):
     filter_backends = [
         DjangoFilterBackend,
         filters.SearchFilter,
-        filters.OrderingFilter
+        filters.OrderingFilter,
     ]
 
     filterset_class = MenuFilter
@@ -59,7 +57,7 @@ class UserRestaurantsAPIView(generics.ListAPIView):
         filters.SearchFilter,
         filters.OrderingFilter,
     ]
-        
+
     search_fields = ["name", "address"]
     ordering_fields = ["created_at"]
 
@@ -95,7 +93,9 @@ def update_restaurant_api_view(request, uuid):
     user = request.user
     if restaurant.user != user:
         return Response(
-            {"error": "You can't update or edit a restaurant that does not belong to you."},
+            {
+                "error": "You can't update or edit a restaurant that does not belong to you."
+            },
             status=status.HTTP_403_FORBIDDEN,
         )
     if request.method == "PUT":
@@ -147,7 +147,8 @@ def delete_restaurant_api_view(request, uuid):
         else:
             data["failure"] = "Deletion failed"
         return Response(data=data)
-        
+
+
 class RestaurantSearchAPIView(APIView):
     permission_classes = [permissions.AllowAny]
     serializer_class = RestaurantCreateSerializer

@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
-from .models import UserAllergen
 from apps.restaurants.serializers import IngredientSerializer
+
+from .models import UserAllergen
+
 
 class UserAllergenSerializer(serializers.ModelSerializer):
     user = serializers.SerializerMethodField(read_only=True)
@@ -15,7 +17,7 @@ class UserAllergenSerializer(serializers.ModelSerializer):
         return obj.user.username
 
     def get_allergen(self, obj):
-            return obj.allergen.ingredient.name
+        return obj.allergen.ingredient.name
 
 
 class UserAllergenCreateSerializer(serializers.ModelSerializer):
@@ -26,6 +28,6 @@ class UserAllergenCreateSerializer(serializers.ModelSerializer):
         fields = ["user", "allergen", "uuid", "id"]
 
     def update(self, instance, validated_data):
-        allergen = validated_data.pop('allergen')
+        allergen = validated_data.pop("allergen")
         instance.allergen.set(allergen)
         return instance

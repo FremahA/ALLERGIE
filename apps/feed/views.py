@@ -1,16 +1,14 @@
 import logging
 
-from django.db.models import query
-
-from rest_framework.response import Response
 from rest_framework import generics, viewsets
 from rest_framework.permissions import IsAuthenticated
-
-from .serializers import  UserAllergenCreateSerializer, UserAllergenSerializer
-from .models import UserAllergen
+from rest_framework.response import Response
 
 from apps.restaurants.models import MenuItem
 from apps.restaurants.serializers import MenuItemSerializer
+
+from .models import UserAllergen
+from .serializers import UserAllergenCreateSerializer, UserAllergenSerializer
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +24,7 @@ class UserAllergenViewset(viewsets.ModelViewSet):
         if serializer_class.is_valid():
             serializer_class.save
         return Response(serializer_class.data)
-        
+
     def update(self, request, pk=None):
         instance = UserAllergen.objects.get(user=request.user)
         serializer_class = UserAllergenCreateSerializer(instance, data=request.data)
