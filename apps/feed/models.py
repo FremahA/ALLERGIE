@@ -15,5 +15,3 @@ class UserAllergen(TimeStampedUUIDModel):
     class Meta:
         verbose_name= _("User Allergen")
         verbose_name_plural = _("User Allergens")
-
-
