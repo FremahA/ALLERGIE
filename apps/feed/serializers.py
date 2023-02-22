@@ -19,7 +19,7 @@ class UserAllergenSerializer(serializers.ModelSerializer):
 
 
 class UserAllergenCreateSerializer(serializers.ModelSerializer):
-    category_following = IngredientSerializer(many=True)
+    allergen = IngredientSerializer(many=True)
 
     class Meta:
         model = UserAllergen
