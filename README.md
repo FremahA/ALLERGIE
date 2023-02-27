@@ -21,7 +21,7 @@ Log in with admin user:
 + Password: <the password you filled in at the step creating admin user>
 ```
 
-## Migrate DB and create super user (once time set up)
+## Migrate DB and create super user (one time set up)
 ```
 $ docker-compose run web bash -c "python manage.py makemigrations rest_example && python manage.py migrate && python manage.py createsuperuser --email admin@example.com --username admin"
 Password: password123
