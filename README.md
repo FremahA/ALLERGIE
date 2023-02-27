@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 # USAGE
 
 ```
-$ git clone https://github.com/minhng92/django-rest-example-docker
-$ cd django-rest-example-docker
+$ git clone https://github.com/FremahA/ALLERGIE
+$ cd allergie
 $ docker-compose build
 # create admin user, fill in the admin user's password
 $ docker-compose run web bash -c "python manage.py makemigrations rest_example && python manage.py migrate && python manage.py createsuperuser --email admin@example.com --username admin"
