@@ -28,9 +28,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 DJANGO_APPS = [
+    "django.contrib.contenttypes",
     "django.contrib.admin",
     "django.contrib.auth",
-    "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
@@ -45,6 +45,7 @@ THIRD_PARTY_APPS = [
     "djoser",
     "rest_framework_simplejwt",
     "django_filters",
+    "djcelery_email",
 ]
 
 LOCAL_APPS = [
@@ -187,7 +188,7 @@ DJOSER = {
     },
 }
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_BACKEND = "djcelery_email.backends.CeleryEmailBackend"
 EMAIL_HOST = env("EMAIL_HOST")
 EMAIL_USE_TLS = True
 EMAIL_PORT = env("EMAIL_PORT")
@@ -197,6 +198,9 @@ DEFAULT_FROM_EMAIL = "info@allergie.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "ALLERGIE"
 
+CELERY_BROKER_URL = env("CELERY_BROKER")
+CELERY_RESULT_BACKEND = env("CELERY_BACKEND")
+CELERY_TIMEZONE = "UTC"
 
 logger = logging.getLogger(__name__)
 
