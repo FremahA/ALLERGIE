@@ -50,7 +50,7 @@ $ docker-compose up -d
 
 * Go to `http://localhost:8000` to browse public RESTful APIs
 * Django Admin: `http://localhost:8000/admin`
-Log in with admin user:
+* Log in with admin user:
 + Username: admin
 + Password: <the password you filled in at the step creating admin user>
 
