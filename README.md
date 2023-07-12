@@ -5,15 +5,19 @@ A REST API built with Docker, Celery, Redis and more that allows restaurants upl
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-Create a .env file from the .env.example file provided and fill in the necessary details before you begin.
 
 # USAGE
 
 ```
 $ git clone https://github.com/FremahA/ALLERGIE
 $ cd allergie
+
+# Create a .env file from the .env.example file provided and fill in the necessary details.
+
 $ docker-compose build
+
 # create admin user, fill in the admin user's password
+
 $ docker-compose run web bash -c "python manage.py makemigrations rest_example && python manage.py migrate && python manage.py createsuperuser --email admin@example.com --username admin"
 $ docker-compose up
 
