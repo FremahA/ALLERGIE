@@ -52,7 +52,7 @@ $ docker-compose up -d
 * Django Admin: `http://localhost:8000/admin`
 * Log in with admin user:
 + Username: admin
-+ Password: <the password you filled in at the step creating admin user>
++ Password: `<the password you filled in at the step creating admin user>`
 
 ## References
 
