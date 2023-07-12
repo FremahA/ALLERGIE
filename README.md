@@ -5,6 +5,8 @@ A REST API built with Docker, Celery, Redis and more that allows restaurants upl
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+Create a .env file from the .env.example file provided and fill in the necessary details before you begin.
+
 # USAGE
 
 ```
