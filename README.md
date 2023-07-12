@@ -10,10 +10,11 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```
 $ git clone https://github.com/FremahA/ALLERGIE
-$ cd allergie
 
 # Create a .env file from the .env.example file provided and fill in the necessary details.
-# Ctreate a folder called `logs`. All API logs will be stored in this folder
+# Create a folder called `logs`. All API logs will be stored in this folder
+
+$ cd allergie
 
 $ docker-compose build
 $ docker-compose up
